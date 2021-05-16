@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <h2>Kasozi's vitals</h2>
+      <h2 class="red">Kasozi's vitals</h2>
     </div>
 
     <div class="container-centered">
@@ -18,11 +18,14 @@ export default {
   components: { VitalsList },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
+$red-color: red;
+.red {
+  color: $red-color;
+}
 .container-centered {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 </style>
-
