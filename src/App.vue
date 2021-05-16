@@ -3,7 +3,7 @@
     <router-view />
   </div>
 </template>
-
+import "@/assets/css/container.css";
 <style lang="sass" scoped>
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif
@@ -15,11 +15,9 @@
 #nav
   padding: 30px
 
-
   & a
     font-weight: bold
     color: #2c3e50
-
 
   & a.router-link-exact-active
     color: #42b983
