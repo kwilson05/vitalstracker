@@ -1,16 +1,12 @@
-import {
-  createRouter,
-  createWebHashHistory
-}
-  from "vue-router";
-import Vitals from "@/views/Vitals.vue"
+import { createRouter, createWebHashHistory } from "vue-router";
+import Vitals from "@/views/Vitals.vue";
 
-const routes = [{
-  path: '/',
-  name: 'Vitals',
-  component: Vitals
-}
-
+const routes = [
+  {
+    path: "/",
+    name: "Vitals",
+    component: Vitals,
+  },
 ];
 
 const router = createRouter({
