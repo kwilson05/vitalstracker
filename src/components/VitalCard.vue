@@ -1,12 +1,16 @@
 <template>
-  <div class="Vital_card">
+  <router-link
+    :to="{ name: 'VitalView', params: { vitalID: vital.id } }"
+    tag="div"
+    class="Vital_card"
+  >
     <div>{{ vital.createdDate }}</div>
     <div>{{ vital.bloodPressure }}</div>
     <div>{{ vital.pulse }}</div>
     <div>{{ vital.temperature }}</div>
     <div>{{ vital.waterIntake }}</div>
     <div>{{ vital.notes }}</div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {

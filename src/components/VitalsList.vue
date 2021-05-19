@@ -12,7 +12,7 @@ export default {
   components: { VitalListItem },
   setup() {
     const store = useStore();
-    const allVitals = computed(() => store.state.vitals.all);
+    const allVitals = computed(() => Object.values(store.state.vitals.all));
     return {
       allVitals,
     };

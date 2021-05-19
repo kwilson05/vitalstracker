@@ -1,6 +1,6 @@
 <template>
-  <div style="margin: 4px">
-    <input type="checkbox" :id="vital.id" />
+  <div class="row-container" style="margin: 4px">
+    <input style="margin-right: 8px" type="checkbox" :id="vital.id" />
     <VitalCard :vital="vital" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 const state = () => ({
-  all: [
-    {
+  all: {
+    1: {
       id: 1,
       createdDate: "10/12/2020",
       bloodPressure: "100/20",
@@ -9,7 +9,8 @@ const state = () => ({
       waterIntake: "30 oz",
       notes: "Some notes that are very long for some reason ",
     },
-    {
+
+    2: {
       id: 2,
       createdDate: "10/20/2024",
       bloodPressure: "111/20",
@@ -19,7 +20,8 @@ const state = () => ({
       notes:
         "Some notes thatals;dkf;l asdf al;sjkdfl;kas df long for some reason ",
     },
-    {
+
+    3: {
       id: 3,
       createdDate: "10/12/2021",
       bloodPressure: "100/20",
@@ -28,7 +30,7 @@ const state = () => ({
       waterIntake: "30 oz",
       notes: "Some notes ",
     },
-  ],
+  },
 });
 
 const mutations = {};
