@@ -1,26 +1,13 @@
 <template>
-  <form>
-    <date-field
-      :id="vital.id"
-      :date="vital.createdDate"
-      :label="'Create Date'"
-    />
-    <blood-pressure-field :pressure="vital.bloodPressure" />
-    <human-pulse-field :pulse="vital.pulse" />
-    <temperature-field :temperature="vital.temperature" />
-    <water-intake-field :intake="vital.waterIntake" />
-    <notes-field :notes="vital.notes" />
-  </form>
+  <section>
+    <button @click="this.$router.push('/')" type="button">Back</button>
+    <VitalForm :vital="vital" />
+  </section>
 </template>
 <script>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import DateField from "@/components/DateField.vue";
-import BloodPressureField from "@/components/BloodPressureField.vue";
-import HumanPulseField from "@/components/HumanPulseField.vue";
-import TemperatureField from "@/components/TemperatureField.vue";
-import WaterIntakeField from "@/components/WaterIntakeField.vue";
-import NotesField from "@/components/NotesField.vue";
+import VitalForm from "@/components/VitalForm.vue";
 
 export default {
   props: ["vitalID"],
@@ -33,12 +20,7 @@ export default {
     };
   },
   components: {
-    DateField: DateField,
-    BloodPressureField: BloodPressureField,
-    HumanPulseField: HumanPulseField,
-    TemperatureField: TemperatureField,
-    WaterIntakeField: WaterIntakeField,
-    NotesField: NotesField,
+    VitalForm: VitalForm,
   },
 };
 </script>
