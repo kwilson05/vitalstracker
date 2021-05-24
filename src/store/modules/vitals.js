@@ -2,7 +2,7 @@ const state = () => ({
   all: {
     1: {
       id: 1,
-      createdDate: "10/12/2020",
+      createdDate: "2020-11-12",
       bloodPressure: "100/20",
       pulse: "200bpm",
       temperature: "200 degrees",
@@ -12,7 +12,7 @@ const state = () => ({
 
     2: {
       id: 2,
-      createdDate: "10/20/2024",
+      createdDate: "2024-10-20",
       bloodPressure: "111/20",
       pulse: "100bpm",
       temperature: "100 degrees",
@@ -23,7 +23,7 @@ const state = () => ({
 
     3: {
       id: 3,
-      createdDate: "10/12/2021",
+      createdDate: "2021-04-02",
       bloodPressure: "100/20",
       pulse: "100bpm",
       temperature: "150 degrees",
@@ -33,8 +33,16 @@ const state = () => ({
   },
 });
 
-const mutations = {};
-const actions = {};
+const mutations = {
+  updateVitalCreatedDate(state, { id, createdDate }) {
+    state.all[id].createdDate = createdDate;
+  },
+};
+const actions = {
+  updateVitalCreatedDate({ commit }, vital) {
+    commit("updateVitalCreatedDate", vital);
+  },
+};
 
 export default {
   namespaced: true,

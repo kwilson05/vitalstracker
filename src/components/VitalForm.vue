@@ -1,11 +1,16 @@
 <template>
   <form class="centered-container">
-    <date-field :id="id" :date="createdDate" :label="'Create Date'" />
-    <blood-pressure-field :pressure="bloodPressure" />
-    <human-pulse-field :pulse="pulse" />
-    <temperature-field :temperature="temperature" />
-    <water-intake-field :intake="waterIntake" />
-    <notes-field :notes="notes" />
+    <date-field
+      :id="editedVital.id"
+      @update:date="updateCreateDate"
+      :date="editedVital.createdDate"
+      :label="'Create Date'"
+    />
+    <blood-pressure-field :pressure="editedVital.bloodPressure" />
+    <human-pulse-field :pulse="editedVital.pulse" />
+    <temperature-field :temperature="editedVital.temperature" />
+    <water-intake-field :intake="editedVital.waterIntake" />
+    <notes-field :notes="editedVital.notes" />
     <button @click="save" type="button">Save</button>
   </form>
 </template>
@@ -16,7 +21,8 @@ import HumanPulseField from "@/components/HumanPulseField.vue";
 import TemperatureField from "@/components/TemperatureField.vue";
 import WaterIntakeField from "@/components/WaterIntakeField.vue";
 import NotesField from "@/components/NotesField.vue";
-import { computed, reactive } from "vue";
+import { reactive } from "vue";
+//import { useStore } from "vuex";
 export default {
   props: {
     vital: Object,
@@ -32,72 +38,31 @@ export default {
   },
   setup(props) {
     //const store = useStore();
-    const vitalInitValue = reactive({});
 
-    props.vital && Object.assign(vitalInitValue, props.vital);
+    const editedVital = reactive({});
 
-    const id = computed({
-      get: () => {
-        return vitalInitValue.id;
-      },
-    });
+    props.vital && Object.assign(editedVital, props.vital);
 
-    const createdDate = computed({
-      get: () => {
-        return vitalInitValue.createdDate;
-      },
-    });
-
-    const waterIntake = computed({
-      get: () => {
-        return vitalInitValue.waterIntake;
-      },
-    });
-
-    const bloodPressure = computed({
-      get: () => {
-        return vitalInitValue.bloodPressure;
-      },
-    });
-
-    const pulse = computed({
-      get: () => {
-        return vitalInitValue.pulse;
-      },
-    });
-
-    const temperature = computed({
-      get: () => {
-        return vitalInitValue.temperature;
-      },
-    });
-
-    const notes = computed({
-      get: () => {
-        return vitalInitValue.notes;
-      },
-    });
+    const updateCreateDate = (newDate) => {
+      //only want to dispatch change when user clicks save button
+      debugger;
+      editedVital.createdDate = newDate;
+    };
 
     const save = () => {
-      //does vital exist already
-      if (vitalInitValue.id) {
+      //does props.vital exist already
+      if (props.vital.id) {
         //save in store
       } else {
-        //create vital via api
+        //create props.vital via api
         //then add to store
       }
-      console.log("saving vital");
+      console.log("saving props.vital");
     };
 
     return {
-      createdDate,
-      vitalInitValue,
-      bloodPressure,
-      pulse,
-      temperature,
-      notes,
-      id,
-      waterIntake,
+      updateCreateDate,
+      editedVital,
       save,
     };
   },
