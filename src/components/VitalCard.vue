@@ -5,7 +5,9 @@
     class="Vital_card"
   >
     <div>{{ vital.createdDate }}</div>
-    <div>{{ vital.bloodPressure }}</div>
+    <div>
+      {{ vital.bloodPressure.diastolic }} / {{ vital.bloodPressure.systolic }}
+    </div>
     <div>{{ vital.pulse }}</div>
     <div>{{ vital.temperature }}</div>
     <div>{{ vital.waterIntake }}</div>

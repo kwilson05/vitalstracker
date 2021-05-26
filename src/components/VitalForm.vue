@@ -6,8 +6,12 @@
       :date="editedVital.createdDate"
       :label="'Create Date'"
     />
-    <blood-pressure-field :pressure="editedVital.bloodPressure" />
-    <human-pulse-field :pulse="editedVital.pulse" />
+    <blood-pressure-field
+      @update:diastolic="updateDiastolicPressure"
+      @update:systolic="updateSystolicPressure"
+      :pressure="editedVital.bloodPressure"
+    />
+    <human-pulse-field @update:pulse="updatePulse" :pulse="editedVital.pulse" />
     <temperature-field :temperature="editedVital.temperature" />
     <water-intake-field :intake="editedVital.waterIntake" />
     <notes-field :notes="editedVital.notes" />
@@ -40,13 +44,27 @@ export default {
     //const store = useStore();
 
     const editedVital = reactive({});
+    const editedBloodPressure = reactive({});
 
     props.vital && Object.assign(editedVital, props.vital);
 
+    Object.assign(editedBloodPressure, editedVital.bloodPressure);
+
     const updateCreateDate = (newDate) => {
       //only want to dispatch change when user clicks save button
-      debugger;
       editedVital.createdDate = newDate;
+    };
+
+    const updateDiastolicPressure = (newDiastolic) => {
+      editedBloodPressure.diastolic = newDiastolic;
+    };
+
+    const updateSystolicPressure = (newSystolic) => {
+      editedBloodPressure.systolic = newSystolic;
+    };
+
+    const updatePulse = (newPulse) => {
+      editedVital.pulse = newPulse;
     };
 
     const save = () => {
@@ -64,6 +82,9 @@ export default {
       updateCreateDate,
       editedVital,
       save,
+      updateDiastolicPressure,
+      updateSystolicPressure,
+      updatePulse,
     };
   },
 };
