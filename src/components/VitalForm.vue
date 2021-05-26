@@ -12,9 +12,16 @@
       :pressure="editedVital.bloodPressure"
     />
     <human-pulse-field @update:pulse="updatePulse" :pulse="editedVital.pulse" />
-    <temperature-field :temperature="editedVital.temperature" />
-    <water-intake-field :intake="editedVital.waterIntake" />
-    <notes-field :notes="editedVital.notes" />
+    <temperature-field
+      @update:temperature="udpateTemperature"
+      :temperature="editedVital.temperature"
+    />
+    <water-intake-field
+      @update:waterIntakeMeasurement="updateWaterIntakeMeasurement"
+      @update:waterIntakeValue="updateWaterIntakeValue"
+      :waterIntake="editedVital.waterIntake"
+    />
+    <notes-field @update:notes="updateNotes" :notes="editedVital.notes" />
     <button @click="save" type="button">Save</button>
   </form>
 </template>
@@ -45,10 +52,12 @@ export default {
 
     const editedVital = reactive({});
     const editedBloodPressure = reactive({});
+    const editedWaterIntake = reactive({});
 
     props.vital && Object.assign(editedVital, props.vital);
 
     Object.assign(editedBloodPressure, editedVital.bloodPressure);
+    Object.assign(editedWaterIntake, editedVital.waterIntake);
 
     const updateCreateDate = (newDate) => {
       //only want to dispatch change when user clicks save button
@@ -67,6 +76,23 @@ export default {
       editedVital.pulse = newPulse;
     };
 
+    const updateTemperature = (newTemperature) => {
+      editedVital.temperature = newTemperature;
+    };
+
+    const updateWaterIntakeValue = (newIntakeValue) => {
+      debugger;
+      editedWaterIntake.intake = newIntakeValue;
+    };
+
+    const updateWaterIntakeMeasurement = (newMeasurement) => {
+      editedWaterIntake.measurement = newMeasurement;
+    };
+
+    const updateNotes = (notes) => {
+      editedVital.notes = notes;
+    };
+
     const save = () => {
       //does props.vital exist already
       if (props.vital.id) {
@@ -81,10 +107,16 @@ export default {
     return {
       updateCreateDate,
       editedVital,
+      editedBloodPressure,
+      editedWaterIntake,
       save,
       updateDiastolicPressure,
       updateSystolicPressure,
       updatePulse,
+      updateTemperature,
+      updateWaterIntakeValue,
+      updateWaterIntakeMeasurement,
+      updateNotes,
     };
   },
 };

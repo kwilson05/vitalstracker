@@ -8,8 +8,11 @@ const state = () => ({
         systolic: "80",
       },
       pulse: "200",
-      temperature: "200 degrees",
-      waterIntake: "30 oz",
+      temperature: "200",
+      waterIntake: {
+        intake: "30",
+        measurement: "cups",
+      },
       notes: "Some notes that are very long for some reason ",
     },
 
@@ -21,8 +24,11 @@ const state = () => ({
         systolic: "80",
       },
       pulse: "100",
-      temperature: "100 degrees",
-      waterIntake: "110 oz",
+      temperature: "100",
+      waterIntake: {
+        value: "30",
+        measurement: "ounces",
+      },
       notes:
         "Some notes thatals;dkf;l asdf al;sjkdfl;kas df long for some reason ",
     },
@@ -35,8 +41,11 @@ const state = () => ({
         systolic: "90",
       },
       pulse: "100",
-      temperature: "150 degrees",
-      waterIntake: "30 oz",
+      temperature: "150",
+      waterIntake: {
+        value: "30",
+        measurement: "cups",
+      },
       notes: "Some notes ",
     },
   },
