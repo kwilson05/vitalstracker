@@ -12,7 +12,7 @@
 import { ref, toRefs, watch } from "vue";
 export default {
   props: {
-    waterIntake: String,
+    waterIntake: Object,
   },
   setup(props, context) {
     const measurements = ref([]);

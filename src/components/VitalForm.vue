@@ -13,7 +13,7 @@
     />
     <human-pulse-field @update:pulse="updatePulse" :pulse="editedVital.pulse" />
     <temperature-field
-      @update:temperature="udpateTemperature"
+      @update:temperature="updateTemperature"
       :temperature="editedVital.temperature"
     />
     <water-intake-field
@@ -33,7 +33,8 @@ import TemperatureField from "@/components/TemperatureField.vue";
 import WaterIntakeField from "@/components/WaterIntakeField.vue";
 import NotesField from "@/components/NotesField.vue";
 import { reactive } from "vue";
-//import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 export default {
   props: {
     vital: Object,
@@ -48,7 +49,7 @@ export default {
     NotesField: NotesField,
   },
   setup(props) {
-    //const store = useStore();
+    const store = useStore();
 
     const editedVital = reactive({});
     const editedBloodPressure = reactive({});
@@ -81,7 +82,6 @@ export default {
     };
 
     const updateWaterIntakeValue = (newIntakeValue) => {
-      debugger;
       editedWaterIntake.intake = newIntakeValue;
     };
 
@@ -93,15 +93,20 @@ export default {
       editedVital.notes = notes;
     };
 
+    const router = useRouter();
     const save = () => {
-      //does props.vital exist already
       if (props.vital.id) {
-        //save in store
+        debugger;
+        store.dispatch("vitals/editVital", {
+          vital: editedVital,
+          bloodPressure: editedBloodPressure,
+          waterIntake: editedWaterIntake,
+        });
       } else {
         //create props.vital via api
         //then add to store
       }
-      console.log("saving props.vital");
+      router.push("/");
     };
 
     return {

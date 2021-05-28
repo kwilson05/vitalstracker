@@ -26,7 +26,7 @@ const state = () => ({
       pulse: "100",
       temperature: "100",
       waterIntake: {
-        value: "30",
+        intake: "30",
         measurement: "ounces",
       },
       notes:
@@ -43,7 +43,7 @@ const state = () => ({
       pulse: "100",
       temperature: "150",
       waterIntake: {
-        value: "30",
+        intake: "30",
         measurement: "cups",
       },
       notes: "Some notes ",
@@ -52,13 +52,15 @@ const state = () => ({
 });
 
 const mutations = {
-  updateVitalCreatedDate(state, { id, createdDate }) {
-    state.all[id].createdDate = createdDate;
+  editVital(state, { vital, bloodPressure, waterIntake }) {
+    state.all[vital.id] = vital;
+    state.all[vital.id].bloodPressure = bloodPressure;
+    state.all[vital.id].waterIntake = waterIntake;
   },
 };
 const actions = {
-  updateVitalCreatedDate({ commit }, vital) {
-    commit("updateVitalCreatedDate", vital);
+  editVital({ commit }, vital) {
+    commit("editVital", vital);
   },
 };
 

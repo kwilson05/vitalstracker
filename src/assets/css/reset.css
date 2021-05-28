@@ -1,0 +1,79 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  outline: 0px;
+  box-sizing: border-box;
+font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+body,
+input,
+select,
+textarea,
+button {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; }
+
+a {
+  -webkit-tap-highlight-color: #10cc3f; }
+
+::-moz-selection {
+  background: #0880af;
+  color: #fff;
+  text-shadow: none; }
+
+::selection {
+  background: #0cc9a9;
+  color: #fff;
+  text-shadow: none; }
+
+img {
+  -ms-interpolation-mode: bicubic; }
+
+strong {
+  font-weight: bold; }
+
+em {
+  font-style: italic; }
+
+.group:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden; }
+
+* html.group {
+  height: 1%; }
+
+/* IE6 */
+*:first-child + html .group {
+  min-height: 1px; }
+
+
+  .truncate-overflow {
+  --max-lines: 5;
+  position: relative;
+  max-height: calc(var(--lh) * var(--max-lines));
+  overflow: hidden;
+  padding-right: 1rem; /* space for ellipsis */
+}
+.truncate-overflow::before {
+  position: absolute;
+  content: "...";
+  inset-block-end: 0; /* "bottom" */
+  inset-inline-end: 0; /* "right" */
+}
+.truncate-overflow::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0; /* "right" */
+  width: 1rem;
+  height: 1rem;
+  background: white;
+}
