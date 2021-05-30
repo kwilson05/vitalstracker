@@ -1,7 +1,7 @@
 <template>
   <div>
-    <input type="number" v-model="intake" />
-    <select v-model="measurement">
+    <input class="VitalWaterIntake_field" type="number" v-model="intake" />
+    <select class="VitalWaterIntake_measurement-field" v-model="measurement">
       <option v-for="measurement in measurements" :key="measurement">
         {{ measurement }}
       </option>
@@ -50,3 +50,20 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.VitalWaterIntake_field {
+  border: 1px solid $field-border-color;
+  padding: 4px;
+  text-align: center;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+.VitalWaterIntake_measurement-field {
+  border: 1px solid $field-border-color;
+  padding: 4px;
+  text-align: center;
+  margin-left: 8px;
+  border-radius: 4px;
+  background: white;
+}
+</style>

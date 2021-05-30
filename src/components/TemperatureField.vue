@@ -1,7 +1,10 @@
 <template>
   <div>
-    <input type="number" v-model="temperatureValue" />
-    degrees
+    <input
+      class="VitalTemperature_field"
+      type="number"
+      v-model="temperatureValue"
+    />
   </div>
 </template>
 <script>
@@ -29,3 +32,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.VitalTemperature_field {
+  border: 1px solid $field-border-color;
+  padding: 4px;
+  text-align: center;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+</style>

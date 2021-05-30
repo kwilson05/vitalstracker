@@ -1,29 +1,55 @@
 <template>
-  <form class="centered-container">
-    <date-field
-      :id="editedVital.id"
-      @update:date="updateCreateDate"
-      :date="editedVital.createdDate"
-      :label="'Create Date'"
-    />
-    <blood-pressure-field
-      @update:diastolic="updateDiastolicPressure"
-      @update:systolic="updateSystolicPressure"
-      :pressure="editedVital.bloodPressure"
-    />
-    <human-pulse-field @update:pulse="updatePulse" :pulse="editedVital.pulse" />
-    <temperature-field
-      @update:temperature="updateTemperature"
-      :temperature="editedVital.temperature"
-    />
-    <water-intake-field
-      @update:waterIntakeMeasurement="updateWaterIntakeMeasurement"
-      @update:waterIntakeValue="updateWaterIntakeValue"
-      :waterIntake="editedVital.waterIntake"
-    />
-    <notes-field @update:notes="updateNotes" :notes="editedVital.notes" />
-    <button @click="save" type="button">Save</button>
-  </form>
+  <section class="centered-container">
+    <form class="VitalForm">
+      <div>
+        <label class="VitalForm_field-label">Create Date</label>
+        <date-field
+          class="VitalForm_date-field"
+          :id="editedVital.id"
+          @update:date="updateCreateDate"
+          :date="editedVital.createdDate"
+        />
+      </div>
+      <div>
+        <label class="VitalForm_field-label">Blood Pressure</label>
+        <blood-pressure-field
+          @update:diastolic="updateDiastolicPressure"
+          @update:systolic="updateSystolicPressure"
+          :pressure="editedVital.bloodPressure"
+        />
+      </div>
+
+      <div>
+        <label class="VitalForm_field-label">Pulse (bpm)</label>
+        <human-pulse-field
+          @update:pulse="updatePulse"
+          :pulse="editedVital.pulse"
+        />
+      </div>
+      <div>
+        <label class="VitalForm_field-label">Body Temp (Fahrenheit)</label>
+        <temperature-field
+          @update:temperature="updateTemperature"
+          :temperature="editedVital.temperature"
+        />
+      </div>
+      <div>
+        <label class="VitalForm_field-label">Water Intake</label>
+        <water-intake-field
+          @update:waterIntakeMeasurement="updateWaterIntakeMeasurement"
+          @update:waterIntakeValue="updateWaterIntakeValue"
+          :waterIntake="editedVital.waterIntake"
+        />
+      </div>
+      <div>
+        <label class="VitalForm_field-label">Notes</label>
+        <notes-field @update:notes="updateNotes" :notes="editedVital.notes" />
+      </div>
+    </form>
+    <nav style="width: 300px; margin-top: 8px" class="rightened-container">
+      <button class="btn" @click="save" type="button">Save</button>
+    </nav>
+  </section>
 </template>
 <script>
 import DateField from "@/components/DateField.vue";
@@ -126,3 +152,15 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.VitalForm_field-label {
+  font-size: 14px;
+}
+
+.VitalForm {
+  border: 1px rgb(177, 169, 169) solid;
+  width: 300px;
+  border-radius: 4px;
+  padding: 8px;
+}
+</style>

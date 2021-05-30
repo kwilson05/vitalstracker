@@ -1,7 +1,11 @@
 <template>
   <div>
-    <label for="pulse"> Pulse</label>
-    <input id="pulse" type="number" v-model="pulseValue" />
+    <input
+      class="VitalPulse_field"
+      id="pulse"
+      type="number"
+      v-model="pulseValue"
+    />
   </div>
 </template>
 <script>
@@ -27,3 +31,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.VitalPulse_field {
+  border: 1px solid $field-border-color;
+  padding: 4px;
+  text-align: center;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+</style>

@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <label :id="id + '_dateField'">{{ fieldLabel }}</label>
-    <div>
-      <flat-pickr :config="flatpickrConfig" v-model="initDate" />
-    </div>
+  <div style="margin-left: 8px">
+    <flat-pickr
+      style="border: 1px solid black"
+      :id="id + '_dateField'"
+      :config="flatpickrConfig"
+      v-model="initDate"
+    />
   </div>
 </template>
 <script>
@@ -50,3 +52,4 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped></style>

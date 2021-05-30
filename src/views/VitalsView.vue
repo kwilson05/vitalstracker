@@ -1,6 +1,14 @@
 <template>
-  <section>
-    <button @click="this.$router.push('/')" type="button">Back</button>
+  <section style="padding: 12px">
+    <div style="margin-bottom: 12px">
+      <button
+        class="btn-secondary"
+        @click="this.$router.push('/')"
+        type="button"
+      >
+        Back
+      </button>
+    </div>
     <VitalForm :vital="vital" />
   </section>
 </template>
@@ -24,3 +32,4 @@ export default {
   },
 };
 </script>
+<style lang="scss"></style>

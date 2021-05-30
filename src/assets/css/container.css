@@ -15,3 +15,7 @@
 .row-container{
   display: flex;
 }
+.rightened-container{
+  display: flex;
+  justify-content: flex-end;
+}

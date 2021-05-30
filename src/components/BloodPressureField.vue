@@ -1,8 +1,18 @@
 <template>
   <div>
-    <input id="diastolicField" type="number" v-model="diastolicValue" />
-    <span> over </span>
-    <input id="systolicField" type="number" v-model="systolicValue" />
+    <input
+      class="VitalPressure_field"
+      id="diastolicField"
+      type="number"
+      v-model="diastolicValue"
+    />
+    <div style="margin-left: 8px">over</div>
+    <input
+      class="VitalPressure_field"
+      id="systolicField"
+      type="number"
+      v-model="systolicValue"
+    />
   </div>
 </template>
 <script>
@@ -46,3 +56,12 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss">
+.VitalPressure_field {
+  border: 1px solid $field-border-color;
+  padding: 4px;
+  text-align: center;
+  margin-left: 8px;
+  border-radius: 4px;
+}
+</style>

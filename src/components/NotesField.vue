@@ -1,5 +1,12 @@
 <template>
-  <div><textarea v-model="notesValue" /></div>
+  <div>
+    <textarea
+      spellcheck="false"
+      placeholder="Add some notes"
+      class="VitalNotes_field"
+      v-model="notesValue"
+    />
+  </div>
 </template>
 <script>
 import { toRefs, ref, watch } from "vue";
@@ -25,3 +32,17 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.VitalNotes_field {
+  padding: 20px;
+  font-size: 16px;
+  user-select: text;
+  white-space: pre-wrap;
+  outline: none;
+  overflow-wrap: break-word;
+  border: 1px solid $field-border-color;
+  border-radius: 4px;
+  resize: none;
+  width: 100%;
+}
+</style>
