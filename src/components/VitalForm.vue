@@ -121,16 +121,22 @@ export default {
 
     const router = useRouter();
     const save = () => {
-      if (props.vital.id) {
-        debugger;
+      if (props.vital) {
         store.dispatch("vitals/editVital", {
           vital: editedVital,
           bloodPressure: editedBloodPressure,
           waterIntake: editedWaterIntake,
         });
       } else {
+        debugger;
+        //Vital object will be created from server
         //create props.vital via api
         //then add to store
+        const newVital = {};
+        Object.assign(newVital, editedVital);
+        newVital.bloodPressure = editedBloodPressure;
+        newVital.waterIntake = editedWaterIntake;
+        store.dispatch("vitals/newVital", newVital);
       }
       router.push("/");
     };

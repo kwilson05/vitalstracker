@@ -22,8 +22,9 @@ export default {
     const { waterIntake } = toRefs(props);
 
     const measurement = ref("");
-
-    measurement.value = waterIntake.value.measurement;
+    if (waterIntake.value) {
+      measurement.value = waterIntake.value.measurement;
+    }
 
     watch(
       () => measurement.value,
@@ -33,8 +34,9 @@ export default {
     );
 
     const intake = ref("");
-
-    intake.value = waterIntake.value.intake;
+    if (waterIntake.value) {
+      intake.value = waterIntake.value.intake;
+    }
     watch(
       () => intake.value,
       (newVal) => {

@@ -1,15 +1,15 @@
 <template>
-  <section>
-    <button @click="this.$router.push('/')" type="button">Back</button>
-    <VitalForm
-      :id="vital.id"
-      :createDate="vital.createdDate"
-      :bloodPressure="vital.bloodPressure"
-      :pulse="vital.pulse"
-      :temperature="vital.temperature"
-      :waterIntake="vital.waterIntake"
-      :notes="vital.notes"
-    />
+  <section style="padding: 12px">
+    <div style="margin-bottom: 12px">
+      <button
+        class="btn-secondary"
+        @click="this.$router.push('/')"
+        type="button"
+      >
+        Back
+      </button>
+    </div>
+    <VitalForm />
   </section>
 </template>
 <script>

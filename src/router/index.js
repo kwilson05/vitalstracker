@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Vitals from "@/views/Vitals.vue";
 import VitalView from "@/views/VitalsView.vue";
+import NewVital from "@/views/NewVital.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     name: "VitalView",
     component: VitalView,
     props: true,
+  },
+  {
+    path: "/new",
+    name: "NewVital",
+    component: NewVital,
   },
 ];
 

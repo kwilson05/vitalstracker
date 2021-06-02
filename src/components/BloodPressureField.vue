@@ -26,7 +26,9 @@ export default {
 
     //Top value
     const diastolicValue = ref("");
-    diastolicValue.value = pressure.value.diastolic;
+    if (pressure.value) {
+      diastolicValue.value = pressure.value.diastolic;
+    }
 
     watch(
       () => diastolicValue.value,
@@ -37,7 +39,9 @@ export default {
 
     //Bottom value
     const systolicValue = ref("");
-    systolicValue.value = pressure.value.systolic;
+    if (pressure.value) {
+      systolicValue.value = pressure.value.systolic;
+    }
 
     watch(
       () => systolicValue.value,

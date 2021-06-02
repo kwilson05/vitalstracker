@@ -18,4 +18,8 @@
   @extend .btn;
   background-color: $button-secondary-color;
 }
+
+.btn:disabled {
+  background-color: $button-disabled-color;
+}
 </style>

@@ -19,3 +19,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.space-around-container{
+  display:flex;
+  justify-content: space-around;
+}
