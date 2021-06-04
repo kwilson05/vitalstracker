@@ -19,7 +19,7 @@ const state = () => ({
 
     2: {
       id: 2,
-      selected: false,
+      selected: true,
       createdDate: "2024-10-20",
       bloodPressure: {
         diastolic: "120",
@@ -61,10 +61,24 @@ const mutations = {
     state.all[vital.id].waterIntake = waterIntake;
   },
   newVital(state, newVital) {
-    debugger;
-    const allVitals = state.all;
+    const allVitals = {};
+    Object.assign(allVitals, state.all);
     allVitals[`${newVital.id}`] = newVital;
     state.all = allVitals;
+  },
+  selectVital(state, { id }) {
+    state.all[id].selected = true;
+  },
+  deselectVital(state, { id }) {
+    state.all[id].selected = false;
+  },
+  deleteVitals(state, { deletedVitals }) {
+    const newAllVitals = {};
+    Object.assign(newAllVitals, state.all);
+    for (let deletedVital of deletedVitals) {
+      delete newAllVitals[deletedVital.id];
+    }
+    state.all = newAllVitals;
   },
 };
 const actions = {
@@ -74,12 +88,29 @@ const actions = {
   newVital({ commit }, newVital) {
     commit("newVital", newVital);
   },
+  selectVital({ commit }, vital) {
+    commit("selectVital", vital);
+  },
+  deselectVital({ commit }, vital) {
+    commit("deselectVital", vital);
+  },
+  deleteVitals({ commit, state }, { vitals }) {
+    const allVitals = Object.values(state.all);
+    const deletedVitals = allVitals.filter((currVital) => {
+      for (let vital of vitals) {
+        if (vital.id === currVital.id) {
+          return true;
+        }
+      }
+      return false;
+    });
+
+    commit("deleteVitals", { deletedVitals: deletedVitals });
+  },
 };
 const getters = {
-  hasSelectedVitals(state) {
-    return (
-      Object.values(state.all).filter((vital) => vital.selected).length > 0
-    );
+  hasSelectedVitals(state, getters) {
+    return getters.selectedVitals.length > 0;
   },
   selectedVitals(state) {
     return Object.values(state.all).filter((vital) => vital.selected);

@@ -17,6 +17,7 @@
           :disabled="!hasSelectedVitals"
           class="btn-secondary"
           type="button"
+          @click="deleteSelectedVitals"
         >
           Delete
         </button>
@@ -32,17 +33,30 @@
 <script>
 import VitalsList from "@/components/VitalsList.vue";
 import { useStore } from "vuex";
-import { ref } from "vue";
+import { computed } from "vue";
 export default {
   name: "Vitals",
   components: { VitalsList },
   setup() {
     const store = useStore();
-    const hasSelectedVitals = ref(false);
-    debugger;
-    hasSelectedVitals.value = store.getters["vitals/hasSelectedVitals"];
+    const hasSelectedVitals = computed(
+      () => store.getters["vitals/hasSelectedVitals"]
+    );
+
+    const selectedVitals = computed(
+      () => store.getters["vitals/selectedVitals"]
+    );
+
+    const deleteSelectedVitals = () => {
+      //delete selected vitals via api
+      //pass successfully deleted vitals to store.dispatch
+      store.dispatch("vitals/deleteVitals", { vitals: selectedVitals.value });
+    };
+
     return {
       hasSelectedVitals,
+      selectedVitals,
+      deleteSelectedVitals,
     };
   },
 };
