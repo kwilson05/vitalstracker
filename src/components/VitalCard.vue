@@ -1,9 +1,17 @@
 <template>
-  <router-link
-    :to="{ name: 'VitalView', params: { vitalID: vital.id } }"
-    tag="nav"
-    class="Vitals_card"
-  >
+  <div class="Vitals_card">
+    <div class="rightened-container">
+      <button
+        style="margin-bottom: 12px"
+        type="button"
+        class="btn"
+        @click="
+          $router.push({ name: 'VitalView', params: { vitalID: vital.id } })
+        "
+      >
+        View
+      </button>
+    </div>
     <div>{{ vital.createdDate }}</div>
     <div class="centered-container Vital_card-notes-container">
       <p class="Vital_card-notes truncate-overflow">{{ vital.notes }}</p>
@@ -18,7 +26,7 @@
       {{ vital.waterIntake.intake }} {{ vital.waterIntake.measurement }} of
       water
     </div>
-  </router-link>
+  </div>
 </template>
 <script>
 export default {
@@ -29,7 +37,7 @@ export default {
 <style scoped>
 .Vitals_card {
   border: 1px rgb(177, 169, 169) solid;
-  max-width: 300px;
+  width: 300px;
   border-radius: 4px;
   padding: 8px;
   user-select: none;

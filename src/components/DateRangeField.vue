@@ -1,19 +1,18 @@
 <template>
   <div style="margin-left: 8px">
     <flat-pickr
-      :id="dateField"
+      :id="dateRangeField"
       :config="flatpickrConfig"
-      v-model="initDate"
-      placeholder="Select date"
+      @on-change="newDateRange"
+      placeholder="Select date range"
     />
   </div>
 </template>
 <script>
-import { computed, ref, toRefs, watch } from "vue";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
 export default {
-  name: "DateField",
+  name: "DateRangeField",
   props: {
     id: Number,
     date: String,
@@ -22,32 +21,32 @@ export default {
   components: {
     flatPickr,
   },
-  emits: ["update:date"],
-  setup(props, context) {
-    const fieldLabel = computed(() =>
+  setup() {
+    /*const fieldLabel = computed(() =>
       props.label ? props.label : "Date Field"
     );
     const { date } = toRefs(props);
     const initDate = ref("");
 
-    initDate.value = date.value;
+    initDate.value = date.value;*/
 
     const flatpickrConfig = {
       altFormat: "M d, Y",
       altInput: true,
       dateFormat: "Y-m-d",
+      mode: "range",
+    };
+    const newDateRange = (selectedDates, str, instance) => {
+      debugger;
+      const _this = instance;
+      const dateArr = selectedDates.map(function (date) {
+        return _this.formatDate(date, "Y-m-d");
+      });
+      console.log(dateArr);
     };
 
-    watch(
-      () => initDate.value,
-      (newDate) => {
-        context.emit("update:date", newDate);
-      }
-    );
-
     return {
-      fieldLabel,
-      initDate,
+      newDateRange,
       flatpickrConfig,
     };
   },
