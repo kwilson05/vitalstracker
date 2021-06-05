@@ -3,7 +3,7 @@
     <flat-pickr
       :id="dateRangeField"
       :config="flatpickrConfig"
-      @on-change="newDateRange"
+      @on-close="newDateRange"
       placeholder="Select date range"
     />
   </div>
@@ -21,28 +21,32 @@ export default {
   components: {
     flatPickr,
   },
-  setup() {
-    /*const fieldLabel = computed(() =>
-      props.label ? props.label : "Date Field"
-    );
-    const { date } = toRefs(props);
-    const initDate = ref("");
-
-    initDate.value = date.value;*/
-
+  setup(props, context) {
     const flatpickrConfig = {
       altFormat: "M d, Y",
       altInput: true,
       dateFormat: "Y-m-d",
       mode: "range",
     };
-    const newDateRange = (selectedDates, str, instance) => {
-      debugger;
-      const _this = instance;
+    const newDateRange = (selectedDates, str, flatpickrInstance) => {
+      const _this = flatpickrInstance;
       const dateArr = selectedDates.map(function (date) {
         return _this.formatDate(date, "Y-m-d");
       });
-      console.log(dateArr);
+
+      if (dateArr.length == 2) {
+        context.emit("update", {
+          startDate: dateArr[0],
+          endDate: dateArr[1],
+        });
+      } else if (dateArr.length == 0) {
+        context.emit("clear");
+      } else if (dateArr.length == 1) {
+        context.emit("update", {
+          startDate: dateArr[0],
+          endDate: null,
+        });
+      }
     };
 
     return {
@@ -52,4 +56,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped></style>

@@ -24,7 +24,7 @@
       </nav>
 
       <section>
-        <date-range-field />
+        <vital-filter />
       </section>
 
       <section>
@@ -36,12 +36,12 @@
 
 <script>
 import VitalsList from "@/components/VitalsList.vue";
-import DateRangeField from "@/components/DateRangeField.vue";
+import VitalFilter from "@/components/VitalFilter.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
 export default {
   name: "Vitals",
-  components: { VitalsList: VitalsList, DateRangeField: DateRangeField },
+  components: { VitalsList: VitalsList, VitalFilter: VitalFilter },
   setup() {
     const store = useStore();
     const hasSelectedVitals = computed(

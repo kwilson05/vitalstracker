@@ -52,6 +52,10 @@ const state = () => ({
       notes: "Some notes ",
     },
   },
+  dateRangeFilter: {
+    startDate: null,
+    endDate: null,
+  },
 });
 
 const mutations = {
@@ -80,6 +84,10 @@ const mutations = {
     }
     state.all = newAllVitals;
   },
+  updateDateFilters(state, { startDate, endDate }) {
+    state.dateRangeFilter.startDate = startDate;
+    state.dateRangeFilter.endDate = endDate;
+  },
 };
 const actions = {
   editVital({ commit }, vital) {
@@ -106,6 +114,9 @@ const actions = {
     });
 
     commit("deleteVitals", { deletedVitals: deletedVitals });
+  },
+  updateDateFilters({ commit }, dateFilters) {
+    commit("updateDateFilters", dateFilters);
   },
 };
 const getters = {
