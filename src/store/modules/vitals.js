@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 const state = () => ({
   all: {
     1: {
@@ -123,8 +125,36 @@ const getters = {
   hasSelectedVitals(state, getters) {
     return getters.selectedVitals.length > 0;
   },
-  selectedVitals(state) {
-    return Object.values(state.all).filter((vital) => vital.selected);
+  selectedVitals(state, getters) {
+    return getters.filteredVitals.filter((vital) => vital.selected);
+  },
+  filteredVitals(state, getters) {
+    //No filters; return all vitals
+    debugger;
+    if (!state.dateRangeFilter.startDate && !state.dateRangeFilter.endDate) {
+      return getters.vitalsArr;
+    }
+    //There's always a startDate filter if date filters exist
+    const startDate = DateTime.fromISO(state.dateRangeFilter.startDate);
+    const endDate =
+      state.dateRangeFilter.endDate == null
+        ? null
+        : DateTime.fromISO(state.dateRangeFilter.endDate);
+
+    const filteredVitals = getters.vitalsArr.filter((vital) => {
+      const createdDate = DateTime.fromISO(vital.createdDate);
+      const afterStartDate = createdDate >= startDate;
+      const beforeEndDate = endDate == null ? true : createdDate <= endDate;
+
+      if (afterStartDate && beforeEndDate) {
+        return vital;
+      }
+    });
+
+    return filteredVitals;
+  },
+  vitalsArr(state) {
+    return Object.values(state.all);
   },
 };
 

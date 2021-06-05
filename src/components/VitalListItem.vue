@@ -1,12 +1,12 @@
 <template>
-  <div class="row-container" style="margin: 4px">
+  <div style="margin: 4px">
     <input
-      style="margin-right: 8px"
+      style="margin-bottom: 8px"
       type="checkbox"
       :id="vital.id"
       v-model="selected"
     />
-    <VitalCard :vital="vital" />
+    <VitalCard :for="vital.id" :vital="vital" />
   </div>
 </template>
 <script>

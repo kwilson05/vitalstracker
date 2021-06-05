@@ -1,5 +1,13 @@
 <template>
-  <div style="display: flex; flex-direction: column">
+  <div
+    style="
+      display: flex;
+      flex-wrap: wrap;
+      max-height: 700px;
+      overflow-y: auto;
+      padding: 12px;
+    "
+  >
     <VitalListItem v-for="vital in allVitals" :vital="vital" :key="vital.id" />
   </div>
 </template>
@@ -12,7 +20,7 @@ export default {
   components: { VitalListItem },
   setup() {
     const store = useStore();
-    const allVitals = computed(() => Object.values(store.state.vitals.all));
+    const allVitals = computed(() => store.getters["vitals/filteredVitals"]);
     return {
       allVitals,
     };
