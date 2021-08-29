@@ -2,21 +2,27 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Vitals from "@/views/Vitals.vue";
 import VitalView from "@/views/VitalsView.vue";
 import NewVital from "@/views/NewVital.vue";
+import Register from "@/views/Register.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/vitals",
     name: "Vitals",
     component: Vitals,
   },
   {
-    path: "/:vitalID",
+    path: "/vitals/:vitalID",
     name: "VitalView",
     component: VitalView,
     props: true,
   },
   {
-    path: "/new",
+    path: "/vitals/new",
     name: "NewVital",
     component: NewVital,
   },
