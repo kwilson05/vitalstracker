@@ -40,40 +40,42 @@
 
       <button class="btn" type="button" @click="register">Register</button>
     </panel>
+
+    <aside>
+      <p v-if="showErrorMessage">{{ errorMessage }}</p>
+    </aside>
   </section>
 </template>
 <script>
 import Panel from "@/components/Panel.vue";
 import { registerUser } from "../composable/Authentication";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: {
     Panel: Panel,
   },
   setup() {
+    const router = useRouter();
     const firstName = ref("");
     const lastName = ref("");
     const email = ref("");
     const password = ref("");
+    let errorMessage = ref("");
+    let showErrorMessage = ref(false);
 
     const register = async () => {
-      let result = null;
-      try {
-        result = await registerUser({
-          firstName: firstName.value,
-          lastName: lastName.value,
-          password: password.value,
-          email: email.value,
-        });
-      } catch (err) {
-        console.log(err);
-      }
-
-      if (result && result.error) {
-        //show error
-      } else {
-        console.log(result);
-      }
+      await registerUser({
+        firstName: firstName.value,
+        lastName: lastName.value,
+        password: password.value,
+        email: email.value,
+      }).catch((err) => {
+        showErrorMessage.value = true;
+        errorMessage.value = err.message;
+      });
+      debugger;
+      router.push({ name: "Vitals" });
     };
 
     return {
@@ -82,6 +84,8 @@ export default {
       lastName,
       firstName,
       register,
+      errorMessage,
+      showErrorMessage,
     };
   },
 };
