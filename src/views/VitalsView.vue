@@ -21,7 +21,8 @@ export default {
   props: ["vitalID"],
   setup(props) {
     const store = useStore();
-    const vital = computed(() => store.state.vitals.all[props.vitalID]);
+    debugger;
+    const vital = computed(() => store.state.vitals.vitals[props.vitalID]);
 
     return {
       vital,

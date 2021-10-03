@@ -1,7 +1,7 @@
 //import { DateTime } from "luxon";
 import { getVitals } from "../../composable/Vitals";
 const state = () => ({
-  vitals: [],
+  vitals: {},
   dateRangeFilter: {
     startDate: null,
     endDate: null,
@@ -39,14 +39,19 @@ const mutations = {
     state.dateRangeFilter.endDate = endDate;
   },*/
   setVitals(state, { vitals }) {
-    state.vitals = vitals;
+    Object.assign(state.vitals, {});
+    Object.assign(state.vitals, vitals);
   },
 };
 const actions = {
   async getVitals({ commit }) {
     const vitals = await getVitals();
+    const normalizedVitals = {};
+    for (let vital of vitals) {
+      normalizedVitals[vital.id] = vital;
+    }
     commit("setVitals", {
-      vitals: vitals,
+      vitals: normalizedVitals,
     });
   },
   editVital({ commit }, vital) {
@@ -62,7 +67,7 @@ const actions = {
     commit("deselectVital", vital);
   },
   deleteVitals({ commit, state }, { vitals }) {
-    const allVitals = Object.values(state.all);
+    const allVitals = Object.values(state.vitals);
     const deletedVitals = allVitals.filter((currVital) => {
       for (let vital of vitals) {
         if (vital.id === currVital.id) {
@@ -80,8 +85,8 @@ const actions = {
 };
 const getters = {
   all(state) {
-    const copy = state.vitals.slice();
-    return copy;
+    const copy = Object.assign({}, state.vitals);
+    return Object.values(copy);
   },
   /*hasSelectedVitals(state, getters) {
     return getters.selectedVitals.length > 0;

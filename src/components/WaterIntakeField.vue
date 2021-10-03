@@ -16,8 +16,8 @@ export default {
   },
   setup(props, context) {
     const measurements = ref([]);
-    measurements.value.push("ounces");
-    measurements.value.push("cups");
+    measurements.value.push("CUPS");
+    measurements.value.push("OUNCES");
 
     const { waterIntake } = toRefs(props);
 

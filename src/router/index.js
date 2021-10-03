@@ -10,7 +10,7 @@ import { checkIfUserAuthenticated } from "../composable/Authentication";
 const routes = [
   {
     path: "/",
-    redirect: { name: "SignIn" },
+    redirect: { name: "Vitals" },
   },
   {
     path: "/register",

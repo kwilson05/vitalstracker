@@ -17,7 +17,7 @@ export default {
     const temperatureValue = ref("");
 
     const { temperature } = toRefs(props);
-
+    debugger;
     temperatureValue.value = temperature.value;
 
     watch(

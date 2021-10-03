@@ -7,7 +7,7 @@
           class="VitalForm_date-field"
           :id="editedVital.id"
           @update:date="updateCreateDate"
-          :date="editedVital.createdDate"
+          :date="editedVital.createdAt"
         />
       </div>
       <div>
@@ -30,7 +30,7 @@
         <label class="VitalForm_field-label">Body Temp (Fahrenheit)</label>
         <temperature-field
           @update:temperature="updateTemperature"
-          :temperature="editedVital.temperature"
+          :temperature="editedVital.bodyTemperature"
         />
       </div>
       <div>
