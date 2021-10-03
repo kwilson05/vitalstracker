@@ -128,7 +128,6 @@ export default {
           waterIntake: editedWaterIntake,
         });
       } else {
-        debugger;
         //Vital object will be created from server
         //create props.vital via api
         //then add to store

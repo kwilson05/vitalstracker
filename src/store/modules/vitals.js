@@ -9,11 +9,12 @@ const state = () => ({
 });
 
 const mutations = {
-  /*editVital(state, { vital, bloodPressure, waterIntake }) {
+  editVital(state, { vital, bloodPressure, waterIntake }) {
     state.vitals[vital.id] = vital;
     state.vitals[vital.id].bloodPressure = bloodPressure;
     state.vitals[vital.id].waterIntake = waterIntake;
   },
+  /*
   newVital(state, newVital) {
     const allVitals = {};
     Object.assign(allVitals, state.all);
