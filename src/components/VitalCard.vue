@@ -33,10 +33,12 @@ import { DateTime } from "luxon";
 import { ref } from "vue";
 export default {
   name: "VitalCard",
-  props: ["vital"],
+  props: {
+    vital: Object,
+  },
   setup(props) {
     const formattedCreatedDate = ref("");
-    const createdDate = DateTime.fromISO(props.vital.createdDate);
+    const createdDate = DateTime.fromISO(props.vital.createdAt);
     formattedCreatedDate.value = createdDate.toLocaleString(DateTime.DATE_MED);
 
     return {

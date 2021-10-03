@@ -24,11 +24,7 @@
       </nav>
 
       <section>
-        <vital-filter />
-      </section>
-
-      <section>
-        <vitals-list />
+        <vitals-list :vitals="allVitals" />
       </section>
     </div>
   </section>
@@ -36,34 +32,20 @@
 
 <script>
 import VitalsList from "@/components/VitalsList.vue";
-import VitalFilter from "@/components/VitalFilter.vue";
+
 import { useStore } from "vuex";
 import { computed } from "vue";
 export default {
   name: "Vitals",
-  components: { VitalsList: VitalsList, VitalFilter: VitalFilter },
+  components: { VitalsList: VitalsList },
   setup() {
     const store = useStore();
     store.dispatch("vitals/getVitals");
 
-    const hasSelectedVitals = computed(
-      () => store.getters["vitals/hasSelectedVitals"]
-    );
-
-    const selectedVitals = computed(
-      () => store.getters["vitals/selectedVitals"]
-    );
-
-    const deleteSelectedVitals = () => {
-      //delete selected vitals via api
-      //pass successfully deleted vitals to store.dispatch
-      store.dispatch("vitals/deleteVitals", { vitals: selectedVitals.value });
-    };
+    const allVitals = computed(() => store.getters["vitals/all"]);
 
     return {
-      hasSelectedVitals,
-      selectedVitals,
-      deleteSelectedVitals,
+      allVitals,
     };
   },
 };

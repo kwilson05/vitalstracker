@@ -1,7 +1,7 @@
-import { DateTime } from "luxon";
+//import { DateTime } from "luxon";
 import { getVitals } from "../../composable/Vitals";
 const state = () => ({
-  all: {},
+  vitals: [],
   dateRangeFilter: {
     startDate: null,
     endDate: null,
@@ -9,22 +9,22 @@ const state = () => ({
 });
 
 const mutations = {
-  editVital(state, { vital, bloodPressure, waterIntake }) {
-    state.all[vital.id] = vital;
-    state.all[vital.id].bloodPressure = bloodPressure;
-    state.all[vital.id].waterIntake = waterIntake;
+  /*editVital(state, { vital, bloodPressure, waterIntake }) {
+    state.vitals[vital.id] = vital;
+    state.vitals[vital.id].bloodPressure = bloodPressure;
+    state.vitals[vital.id].waterIntake = waterIntake;
   },
   newVital(state, newVital) {
     const allVitals = {};
     Object.assign(allVitals, state.all);
     allVitals[`${newVital.id}`] = newVital;
-    state.all = allVitals;
+    state.vitals = allVitals;
   },
   selectVital(state, { id }) {
-    state.all[id].selected = true;
+    state.vitals[id].selected = true;
   },
   deselectVital(state, { id }) {
-    state.all[id].selected = false;
+    state.vitals[id].selected = false;
   },
   deleteVitals(state, { deletedVitals }) {
     const newAllVitals = {};
@@ -32,12 +32,12 @@ const mutations = {
     for (let deletedVital of deletedVitals) {
       delete newAllVitals[deletedVital.id];
     }
-    state.all = newAllVitals;
+    state.vitals = newAllVitals;
   },
   updateDateFilters(state, { startDate, endDate }) {
     state.dateRangeFilter.startDate = startDate;
     state.dateRangeFilter.endDate = endDate;
-  },
+  },*/
   setVitals(state, { vitals }) {
     state.vitals = vitals;
   },
@@ -79,7 +79,11 @@ const actions = {
   },
 };
 const getters = {
-  hasSelectedVitals(state, getters) {
+  all(state) {
+    const copy = state.vitals.slice();
+    return copy;
+  },
+  /*hasSelectedVitals(state, getters) {
     return getters.selectedVitals.length > 0;
   },
   selectedVitals(state, getters) {
@@ -108,10 +112,7 @@ const getters = {
     });
 
     return filteredVitals;
-  },
-  vitalsArr(state) {
-    return Object.values(state.all);
-  },
+  },*/
 };
 
 export default {

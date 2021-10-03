@@ -50,7 +50,6 @@ router.beforeEach(async (to, from, next) => {
   if (to.name !== "SignIn" && !isAuthenticated) {
     next({ name: "SignIn" });
   } else {
-    debugger;
     next();
   }
 });

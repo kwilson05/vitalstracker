@@ -8,19 +8,22 @@
       padding: 12px;
     "
   >
-    <VitalListItem v-for="vital in allVitals" :vital="vital" :key="vital.id" />
+    <VitalCard v-for="vital in allVitals" :vital="vital" :key="vital.id" />
   </div>
 </template>
 <script>
 import { computed } from "vue";
-import { useStore } from "vuex";
-import VitalListItem from "./VitalListItem.vue";
+
+import VitalCard from "./VitalCard.vue";
 export default {
+  props: {
+    vitals: Array,
+  },
   name: "VitalList",
-  components: { VitalListItem },
-  setup() {
-    const store = useStore();
-    const allVitals = computed(() => store.getters["vitals/filteredVitals"]);
+  components: { VitalCard },
+  setup(props) {
+    debugger;
+    const allVitals = computed(() => props.vitals);
     return {
       allVitals,
     };

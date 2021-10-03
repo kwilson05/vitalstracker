@@ -33,6 +33,6 @@ export const signin = async ({ email, password }) => {
 export const isUserAuthenticated = async () => {
   const isAuthenticated = (await defaultAxios.post("/user/auth/isSignedIn"))
     .data.isUserSignedIn;
-  debugger;
+
   return isAuthenticated;
 };
