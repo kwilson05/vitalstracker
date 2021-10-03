@@ -44,6 +44,8 @@ export default {
   components: { VitalsList: VitalsList, VitalFilter: VitalFilter },
   setup() {
     const store = useStore();
+    store.dispatch("vitals/getVitals");
+
     const hasSelectedVitals = computed(
       () => store.getters["vitals/hasSelectedVitals"]
     );

@@ -1,59 +1,7 @@
 import { DateTime } from "luxon";
-
+import { getVitals } from "../../composable/Vitals";
 const state = () => ({
-  all: {
-    1: {
-      id: 1,
-      selected: false,
-      createdDate: "2020-11-12",
-      bloodPressure: {
-        diastolic: "100",
-        systolic: "80",
-      },
-      pulse: "200",
-      temperature: "200",
-      waterIntake: {
-        intake: "30",
-        measurement: "cups",
-      },
-      notes: "Some notes that are very long for some reason ",
-    },
-
-    2: {
-      id: 2,
-      selected: true,
-      createdDate: "2024-10-20",
-      bloodPressure: {
-        diastolic: "120",
-        systolic: "80",
-      },
-      pulse: "100",
-      temperature: "100",
-      waterIntake: {
-        intake: "30",
-        measurement: "ounces",
-      },
-      notes:
-        "Some notes thatals;dkf;l asdf al;sjkdfl;kas df long for some reason ",
-    },
-
-    3: {
-      id: 3,
-      selected: false,
-      createdDate: "2021-04-02",
-      bloodPressure: {
-        diastolic: "140",
-        systolic: "90",
-      },
-      pulse: "100",
-      temperature: "150",
-      waterIntake: {
-        intake: "30",
-        measurement: "cups",
-      },
-      notes: "Some notes ",
-    },
-  },
+  all: {},
   dateRangeFilter: {
     startDate: null,
     endDate: null,
@@ -90,8 +38,17 @@ const mutations = {
     state.dateRangeFilter.startDate = startDate;
     state.dateRangeFilter.endDate = endDate;
   },
+  setVitals(state, { vitals }) {
+    state.vitals = vitals;
+  },
 };
 const actions = {
+  async getVitals({ commit }) {
+    const vitals = await getVitals();
+    commit("setVitals", {
+      vitals: vitals,
+    });
+  },
   editVital({ commit }, vital) {
     commit("editVital", vital);
   },
@@ -130,7 +87,6 @@ const getters = {
   },
   filteredVitals(state, getters) {
     //No filters; return all vitals
-    debugger;
     if (!state.dateRangeFilter.startDate && !state.dateRangeFilter.endDate) {
       return getters.vitalsArr;
     }

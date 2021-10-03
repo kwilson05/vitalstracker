@@ -1,11 +1,9 @@
 import defaultAxios from "../service/axios";
 
-const register = async ({ email, firstName, lastName, password }) => {
+const signin = async ({ email, password }) => {
   return await defaultAxios
-    .post("/register", {
+    .post("/signin", {
       data: {
-        firstName: firstName,
-        lastName: lastName,
         password: password,
         email: email,
       },
@@ -16,4 +14,4 @@ const register = async ({ email, firstName, lastName, password }) => {
     });
 };
 
-export default register;
+export default signin;
